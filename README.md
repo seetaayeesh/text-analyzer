@@ -43,6 +43,8 @@ Most frequent character: 'l' (4 times)
 
 The most frequent word is `hello`, which appears twice.
 
+If the program reports an invalid text encoding, re-enter the line in a UTF-8 terminal.
+
 ## How the counts work
 
 - The total character count includes internal spaces and punctuation. Leading and trailing whitespace is trimmed.

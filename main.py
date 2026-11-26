@@ -1,4 +1,5 @@
 import re
+import sys
 from collections import Counter
 
 
@@ -16,8 +17,25 @@ def show_frequencies(label, counts):
         print(f"{item!r}: {count}")
 
 
+def read_text():
+    """Read one valid line, or return None when input ends."""
+    encoding = sys.stdin.encoding or "utf-8"
+    while True:
+        print("Enter your text: ", end="", flush=True)
+        # Decode one line at a time so a bad line cannot discard the next one.
+        line = sys.stdin.buffer.readline()
+        if not line:
+            return None
+        try:
+            return line.decode(encoding).strip()
+        except UnicodeDecodeError:
+            print("Invalid text encoding. Please enter the text again.")
+
+
 def main():
-    text = input("Enter your text: ").strip()
+    text = read_text()
+    if text is None:
+        return
     if not text:
         print("Please enter some text.")
         return
